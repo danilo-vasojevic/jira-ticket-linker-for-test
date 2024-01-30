@@ -19,14 +19,6 @@
     "onLanguage:typescript"
   ],
   "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "jira-ticket-linker-for-test.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -45,5 +37,6 @@
     "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.9"
-  }
+  },
+  "license": "MIT"
 }
