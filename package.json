@@ -1,6 +1,11 @@
 {
+  "publisher": "Danilo Vasojevic",
   "name": "jira-ticket-linker-for-test",
   "displayName": "Jira Ticket Linker for Test",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danilo-vasojevic/jira-ticket-linker-for-test.git"
+  },
   "description": "Simple VSC extension to make jira ticked links clickable",
   "version": "0.0.1",
   "engines": {
