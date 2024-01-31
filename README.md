@@ -2,8 +2,6 @@
 
 Simple Visual Studio Code extension to make Jira links in `markdown` and `typescript` files "alive" (so you can click them and navigate to the issue in your default web browser).
 
-## Setup
-
 ### Setup your JIRA configurations in VSC settings, for example:
 ```
 {
@@ -20,7 +18,9 @@ Simple Visual Studio Code extension to make Jira links in `markdown` and `typesc
 }
 ```
 ### Install the extension
-For now, I'll keep this extension off the marketplace. To install it, check for the latest release in this repo, download it and install it using:
+You should install the extension from official [VSC Marketplace](https://marketplace.visualstudio.com/items?itemName=DaniloVasojevic.jira-ticket-linker-for-test) link.
+
+If you're installing from GitHub repo, check for the latest release in this repo, download it and install it using:
 ```
 code --install-extension <extensionName>.vsix
 ```
