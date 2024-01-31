@@ -7,7 +7,7 @@ type CodeUrl = {
 
 let jiraDecorator: vsc.TextEditorDecorationType
 const schemas = ['file']
-const languages = ['typescript', 'markdown']
+const languages = ['javascript', 'typescript', 'markdown']
 
 export async function activate(context: vsc.ExtensionContext) {
   const jiraTicketLinkProvider = new JiraTicketLinkProvider()
