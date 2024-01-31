@@ -12,12 +12,14 @@
   },
   "description": "Simple VSC extension to make jira ticked links clickable",
   "icon": "img/icon.jpg",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Testing",
+    "Visualization"
   ],
   "activationEvents": [
     "onLanguage:markdown",
