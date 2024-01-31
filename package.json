@@ -5,11 +5,13 @@
   "publisher": "DaniloVasojevic",
   "name": "jira-ticket-linker-for-test",
   "displayName": "Jira Ticket Linker for Test",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/danilo-vasojevic/jira-ticket-linker-for-test.git"
   },
   "description": "Simple VSC extension to make jira ticked links clickable",
+  "icon": "img/icon.jpg",
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.85.0"
@@ -46,6 +48,5 @@
     "esbuild": "^0.20.0",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
-  },
-  "license": "MIT"
+  }
 }
