@@ -1,8 +1,6 @@
-# Change Log
+# [Change Log](http://keepachangelog.com/)
 
 All notable changes to the `Jira Ticket Linker for Test` extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [0.0.3] - 2024-02-01
 - Added extension image
