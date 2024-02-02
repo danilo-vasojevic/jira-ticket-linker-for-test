@@ -24,24 +24,28 @@ export async function activate(context: vsc.ExtensionContext) {
 }
 
 async function decorate(document: vsc.TextDocument, links: vsc.DocumentLink[]) {
-  const editor = await vsc.window.showTextDocument(document)
-  const decorations = links.map((link): vsc.DecorationOptions => {
+  const decorations = links.map((link) => {
     const range = link.range
     const hoverMessage = link.target!.toString()
     return { range, hoverMessage }
   })
-  editor.setDecorations(jiraDecorator, decorations)
+  const editor = await vsc.window.showTextDocument(document)
+  try {
+    editor.setDecorations(jiraDecorator, decorations)
+  } catch (e) { /* ignored for now */ }
 }
 
 class JiraTicketLinkProvider implements vsc.DocumentLinkProvider {
   provideDocumentLinks(doc: vsc.TextDocument) {
     const { config } = vsc.workspace.getConfiguration('jira')
     const text = doc.getText()
+    const docTitle = vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label
+    if(docTitle.includes('(Working Tree)')) return
     const links: vsc.DocumentLink[] = []
     for (const { code, url } of config as CodeUrl[]) {
       const regex = new RegExp(code + '-\\d+', 'g')
       let match: RegExpExecArray | null
-      while ((match = regex.exec(text)) !== null) {
+      while ((match = regex.exec(text))) {
         const range = new vsc.Range(
           doc.positionAt(match.index),
           doc.positionAt(match.index + match[0].length)
