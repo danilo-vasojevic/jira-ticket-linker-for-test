@@ -12,7 +12,7 @@
   },
   "description": "Make Jira tickets in scripts and markdown clickable",
   "icon": "img/icon.jpg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.85.0"
   },

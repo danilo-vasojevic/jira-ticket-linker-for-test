@@ -2,6 +2,9 @@
 
 All notable changes to the `Jira Ticket Linker for Test` extension will be documented in this file.
 
+## [0.0.4] - 2024-02-02
+- Fixed Working Tree issue (#1)
+
 ## [0.0.3] - 2024-02-01
 - Added extension image
 
