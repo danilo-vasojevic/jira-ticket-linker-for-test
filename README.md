@@ -6,16 +6,20 @@ The intended use of this extension is to help QA Automation Engineers easily cou
 
 ### Setup
 Just add `jira.config` to your Visual Studio Code settings, like in the example below. Note that you can add multiple configurations.
+If `delimeter` configuration parameter is not specified, dash `-` will be assumed
 ```json
 {
   "jira.config": [
     {
+      // Example: https://jira.atlassian.com/browse/ECO-22
       "code": "ECO",
       "url": "https://jira.atlassian.com/browse/"
     },
     {
-      "code": "CRUC",
-      "url": "https://jira.atlassian.com/browse/"
+      // Example: https://github.com/danilo-vasojevic/jira-ticket-linker-for-test/issues/2
+      "code": "issues",
+      "delimeter": "/", // Optional. Defaults to '-'
+      "url": "https://github.com/danilo-vasojevic/jira-ticket-linker-for-test/"
     }
   ]
 }
