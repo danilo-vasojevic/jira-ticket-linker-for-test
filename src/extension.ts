@@ -2,6 +2,7 @@ import * as vsc from 'vscode'
 
 type CodeUrl = {
   code: string
+  delimeter?: string
   url: string
 }
 
@@ -37,13 +38,14 @@ async function decorate(document: vsc.TextDocument, links: vsc.DocumentLink[]) {
 
 class JiraTicketLinkProvider implements vsc.DocumentLinkProvider {
   provideDocumentLinks(doc: vsc.TextDocument) {
+    // Show working tree without any decorations (issues/1)
+    if (vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label.includes('(Working Tree)')) return
     const { config } = vsc.workspace.getConfiguration('jira')
     const text = doc.getText()
-    const docTitle = vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label
-    if(docTitle.includes('(Working Tree)')) return
     const links: vsc.DocumentLink[] = []
-    for (const { code, url } of config as CodeUrl[]) {
-      const regex = new RegExp(code + '-\\d+', 'g')
+    for (const { code, delimeter, url } of config as CodeUrl[]) {
+      // Add custom delimeter option (issues/2)
+      const regex = new RegExp(`${code}${delimeter ? delimeter : '-'}` + '\\d+', 'g')
       let match: RegExpExecArray | null
       while ((match = regex.exec(text))) {
         const range = new vsc.Range(
