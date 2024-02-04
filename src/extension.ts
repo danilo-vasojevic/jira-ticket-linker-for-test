@@ -44,7 +44,7 @@ class JiraTicketLinkProvider implements vsc.DocumentLinkProvider {
     const text = doc.getText()
     const links: vsc.DocumentLink[] = []
     for (const { code, delimeter, url } of config as CodeUrl[]) {
-      // Add custom delimeter option (issues/2)
+      // Add custom delimeter option (issues/3)
       const regex = new RegExp(`${code}${delimeter ? delimeter : '-'}` + '\\d+', 'g')
       let match: RegExpExecArray | null
       while ((match = regex.exec(text))) {
