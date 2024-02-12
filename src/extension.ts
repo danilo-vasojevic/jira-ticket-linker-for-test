@@ -40,6 +40,9 @@ class JiraTicketLinkProvider implements vsc.DocumentLinkProvider {
   provideDocumentLinks(doc: vsc.TextDocument) {
     // Show working tree without any decorations (issues/1)
     if (vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label.includes('(Working Tree)')) return
+    // Don't decorate in Merge editor (issues/5)
+    if (vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label.includes('Merging: ')) return
+
     const { config } = vsc.workspace.getConfiguration('jira')
     const text = doc.getText()
     const links: vsc.DocumentLink[] = []

@@ -2,6 +2,9 @@
 
 All notable changes to the `Jira Ticket Linker for Test` extension will be documented in this file.
 
+## [0.0.6] - 2024-02-03
+- Fixed merging files issue (#5)
+
 ## [0.0.5] - 2024-02-03
 - Added support for multiple code formats (#3)
 
