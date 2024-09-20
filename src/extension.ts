@@ -30,7 +30,8 @@ async function decorate(document: vsc.TextDocument, links: vsc.DocumentLink[]) {
     const hoverMessage = link.target!.toString()
     return { range, hoverMessage }
   })
-  const editor = await vsc.window.showTextDocument(document)
+  const editor = vsc.window.visibleTextEditors.find(e => e.document === document)
+  if (!editor) return
   try {
     editor.setDecorations(jiraDecorator, decorations)
   } catch (e) { /* ignored for now */ }
@@ -38,10 +39,10 @@ async function decorate(document: vsc.TextDocument, links: vsc.DocumentLink[]) {
 
 class JiraTicketLinkProvider implements vsc.DocumentLinkProvider {
   provideDocumentLinks(doc: vsc.TextDocument) {
-    // Show working tree without any decorations (issues/1)
-    if (vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label.includes('(Working Tree)')) return
-    // Don't decorate in Merge editor (issues/5)
-    if (vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label.includes('Merging: ')) return
+    const fileName = vsc.window.tabGroups.all[0].tabs.filter(t => t.isActive)[0].label
+    if (fileName.includes('(Working Tree)')) return
+    if (fileName.includes('Merging: ')) return
+    if (fileName.includes('(Untracked)')) return
 
     const { config } = vsc.workspace.getConfiguration('jira')
     const text = doc.getText()
