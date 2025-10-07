@@ -6,12 +6,18 @@ type CodeUrl = {
   url: string
 }
 
-let jiraDecorator: vsc.TextEditorDecorationType
+let jiraDecorator: vsc.TextEditorDecorationType | undefined
 const schemas = ['file']
 const languages = ['javascript', 'typescript', 'markdown']
 
 export async function activate(context: vsc.ExtensionContext) {
   const jiraTicketLinkProvider = new JiraTicketLinkProvider()
+
+  jiraDecorator = vsc.window.createTextEditorDecorationType({
+    textDecoration: 'underline'
+  })
+  context.subscriptions.push(jiraDecorator)
+
   schemas.forEach((scheme) => {
     languages.forEach((language) => {
       context.subscriptions.push(
@@ -31,10 +37,8 @@ async function decorate(document: vsc.TextDocument, links: vsc.DocumentLink[]) {
     return { range, hoverMessage }
   })
   const editor = vsc.window.visibleTextEditors.find(e => e.document === document)
-  if (!editor) return
-  try {
-    editor.setDecorations(jiraDecorator, decorations)
-  } catch (e) { /* ignored for now */ }
+  if (!editor || !jiraDecorator) return
+  editor.setDecorations(jiraDecorator, decorations)
 }
 
 class JiraTicketLinkProvider implements vsc.DocumentLinkProvider {

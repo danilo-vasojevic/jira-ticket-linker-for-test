@@ -2,6 +2,12 @@
 
 All notable changes to the `Jira Ticket Linker for Test` extension will be documented in this file.
 
+## [0.0.8] - 2025-10-07
+- Initialize the Jira ticket decorator during activation
+
+## [0.0.7] - 2024-09-20
+- Skip decorating untracked files
+
 ## [0.0.6] - 2024-02-03
 - Fixed merging files issue (#5)
 
